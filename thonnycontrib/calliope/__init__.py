@@ -10,6 +10,7 @@ class CalliopeMiniConfigPage(MicroPythonConfigPage):
     pass
 
 def load_early_plugin():
+    get_workbench().set_default("CalliopeMini.port", "auto")
     get_workbench().add_backend("CalliopeMini", CalliopeMiniProxy, 
                                 "MicroPython on Calliope mini", CalliopeMiniConfigPage)
 
