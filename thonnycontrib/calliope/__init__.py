@@ -1,5 +1,5 @@
 from thonnycontrib.micropython import MicroPythonProxy, MicroPythonConfigPage
-from thonny.globals import get_workbench
+from thonny import get_workbench
 
 class CalliopeMiniProxy(MicroPythonProxy):
     @property
@@ -9,7 +9,7 @@ class CalliopeMiniProxy(MicroPythonProxy):
 class CalliopeMiniConfigPage(MicroPythonConfigPage):
     pass
 
-def load_early_plugin():
+def load_plugin():
     get_workbench().set_default("CalliopeMini.port", "auto")
     get_workbench().add_backend("CalliopeMini", CalliopeMiniProxy, 
                                 "MicroPython on Calliope mini", CalliopeMiniConfigPage)
