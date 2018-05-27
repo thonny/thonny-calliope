@@ -1,5 +1,6 @@
 import os.path
-from thonnycontrib.micropython import MicroPythonProxy, MicroPythonConfigPage
+from thonnycontrib.micropython import MicroPythonProxy, MicroPythonConfigPage,\
+    add_micropython_backend
 from thonny import get_workbench
 from thonny.ui_utils import FileCopyDialog
 from thonny.misc_utils import find_volume_by_name
@@ -26,9 +27,8 @@ def flash_the_firmware(hex_path):
     dlg.start_and_wait()
 
 def load_plugin():
-    get_workbench().set_default("CalliopeMini.port", "auto")
-    get_workbench().add_backend("CalliopeMini", CalliopeMiniProxy, 
-                                "MicroPython on Calliope mini", CalliopeMiniConfigPage)
+    add_micropython_backend("CalliopeMini", CalliopeMiniProxy, 
+                            "MicroPython on Calliope mini", CalliopeMiniConfigPage)
 
     firmware_dir = os.path.join(os.path.dirname(__file__), "firmware")
     for name in sorted(os.listdir(firmware_dir)):
