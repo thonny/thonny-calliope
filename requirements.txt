@@ -1,2 +1,1 @@
-thonny>=2.2.0b1
-pyserial
+thonny-micropython>=0.1.0b1
