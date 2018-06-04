@@ -1,3 +1,4 @@
+import sys
 import os.path
 from thonnycontrib.micropython import MicroPythonProxy, MicroPythonConfigPage,\
     add_micropython_backend
@@ -5,9 +6,20 @@ from thonny import get_workbench
 from thonny.ui_utils import FileCopyDialog
 from thonny.misc_utils import find_volume_by_name
 import shutil
+from time import sleep
 
 class CalliopeMiniProxy(MicroPythonProxy):
-    pass
+    def _interrupt_to_prompt(self, clean, timeout=8):
+        # NB! Sometimes disconnecting and reconnecting (on macOS?) 
+        # too quickly causes anomalies
+        # https://github.com/pyserial/pyserial/issues/176
+        # In my Sierra, Calliope and micro:bit seemed to soft-reboot
+        # when reconnected too quickly.
+        
+        if clean and sys.platform == "darwin":
+            sleep(1.0)
+        
+        MicroPythonProxy._interrupt_to_prompt(self, clean, timeout=timeout)
 
 class CalliopeMiniConfigPage(MicroPythonConfigPage):
     pass
