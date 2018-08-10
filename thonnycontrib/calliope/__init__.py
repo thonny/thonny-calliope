@@ -20,6 +20,9 @@ class CalliopeMiniProxy(MicroPythonProxy):
             sleep(1.0)
         
         MicroPythonProxy._interrupt_to_prompt(self, clean, timeout=timeout)
+        
+    def _supports_directories(self):
+        return False
 
 class CalliopeMiniConfigPage(MicroPythonConfigPage):
     pass
@@ -49,6 +52,6 @@ def load_plugin():
             def action(hex_path=os.path.join(firmware_dir, name)):
                 flash_the_firmware(hex_path)
                  
-            get_workbench().add_command("uploadmicropythoncalliope" + name, "tools",
+            get_workbench().add_command("uploadmicropythoncalliope" + name, "device",
                                     "Upload %s to Calliope Mini" % name[:-4].replace("_", " "),
-                                    action, group=120)
+                                    action, group=40)
