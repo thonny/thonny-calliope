@@ -2,7 +2,7 @@ import sys
 import os.path
 from thonnycontrib.micropython import MicroPythonProxy, MicroPythonConfigPage,\
     add_micropython_backend
-from thonny import get_workbench
+from thonny import get_workbench, ui_utils
 from thonny.ui_utils import FileCopyDialog
 from thonny.misc_utils import find_volume_by_name
 import shutil
@@ -39,7 +39,7 @@ def flash_the_firmware(hex_path):
     
     dlg = FileCopyDialog(get_workbench(), hex_path, destination_path, 
                    "Uploading %s to %s" % (os.path.basename(hex_path), mount_path))
-    dlg.start_and_wait()
+    ui_utils.show_dialog(dlg)
 
 def load_plugin():
     add_micropython_backend("CalliopeMini", CalliopeMiniProxy, 
