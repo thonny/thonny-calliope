@@ -53,5 +53,5 @@ def load_plugin():
                 flash_the_firmware(hex_path)
                  
             get_workbench().add_command("uploadmicropythoncalliope" + name, "device",
-                                    "Upload %s to Calliope Mini" % name[:-4].replace("_", " "),
+                                    "Install %s to Calliope Mini" % name[:-4].replace("_", " "),
                                     action, group=40)
