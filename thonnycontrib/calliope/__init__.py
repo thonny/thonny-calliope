@@ -1,6 +1,6 @@
 import sys
 import os.path
-from thonnycontrib.micropython import MicroPythonProxy, MicroPythonConfigPage,\
+from thonny.plugins.micropython import MicroPythonProxy, MicroPythonConfigPage,\
     add_micropython_backend
 from thonny import get_workbench, ui_utils
 from thonny.ui_utils import FileCopyDialog
